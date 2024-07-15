@@ -20,7 +20,7 @@ class ScraperNikkei():
         print(f"URL {url} をスクレイピング中...")
         soup = req.fetch(url)
         if not soup:
-            return
+            return []
 
         # 記事ページのURLを取得する処理
         # soupから抜き出そう
