@@ -1,18 +1,18 @@
 from libs.soup_util import RequestsUtil as req
 from libs.db_util import HrInfo, Database
 
-BASE_URL = ''  # ベースURLの定義
+BASE_URL = 'https://www.nikkei.com'  # ベースURLの定義
 
 class ScraperNikkei():
     def execute(self):
         self.session = Database.setup()
 
         # 1.記事ページのURLリストを取得する
-        info_urls = self.get_urls()
+        info_urls = self.get_urls(BASE_URL + '/news/jinji/hatsurei/')
 
         # 2.記事ページからタイトル、日付、内容をDBに保存する
-        for url in info_urls:
-            self.get_content(url)
+        #for url in info_urls:
+        #    self.get_content(url)
 
         self.session.close()
 
@@ -24,8 +24,8 @@ class ScraperNikkei():
 
         # 記事ページのURLを取得する処理
         # soupから抜き出そう
-        info_urls = []
-
+        info_urls = soup.find_all('a', class_='fauxBlockLink_f1dg9afs')
+        info_urls = [BASE_URL + info_url['href'] for info_url in info_urls]
         return info_urls
 
     def get_content(self, url):
