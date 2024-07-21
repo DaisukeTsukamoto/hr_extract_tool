@@ -40,9 +40,9 @@ class ScraperNikkei():
         # Step2 SQLAlchemyでデータベースのhr_infoテーブルに格納しよう
         title=soup.find('h1', class_='title_t1xgcrem').get_text()
         date=soup.find('time').get_text()
-        content=soup.find('p', class_='paragraph_p18mfke4').get_text()
+        body=soup.find('p', class_='paragraph_p18mfke4').get_text()
         print(f"タイトル: {title}")
-        print(f"日付: {date}")
-        print(f"内容: {content}")
+        print(f"日時: {date}")
+        print(f"内容: {body}")
 
         self.session.commit()
