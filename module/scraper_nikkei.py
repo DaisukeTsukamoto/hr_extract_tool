@@ -1,6 +1,6 @@
 from libs.soup_util import RequestsUtil as req
 from libs.db_util import HrInfo, Database
-
+from requests import Session
 
 BASE_URL = 'https://www.nikkei.com'  # ベースURLの定義
 
@@ -14,6 +14,10 @@ class ScraperNikkei():
         # 2.記事ページからタイトル、日付、内容をDBに保存する
         for url in info_urls:
             self.get_content(url)
+
+        records = self.session.query(HrInfo).all()
+        for record in records:
+            print(f"タイトル: {record.title}\n日時: {record.date}\n内容: {record.body}\n")
 
         self.session.close()
 
@@ -45,4 +49,11 @@ class ScraperNikkei():
         print(f"日時: {date}")
         print(f"内容: {body}")
 
+        new_record = HrInfo(
+            title=title,
+            date=date,
+            body=body
+        )
+
+        self.session.add(new_record)
         self.session.commit()
