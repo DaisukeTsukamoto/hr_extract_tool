@@ -15,10 +15,6 @@ class ScraperNikkei():
         for url in info_urls:
             self.get_content(url)
 
-        records = self.session.query(HrInfo).all()
-        for record in records:
-            print(f"タイトル: {record.title}\n日時: {record.date}\n内容: {record.body}\n")
-
         self.session.close()
 
     def get_urls(self, url):
@@ -45,9 +41,6 @@ class ScraperNikkei():
         title=soup.find('h1', class_='title_t1xgcrem').get_text()
         date=soup.find('time').get_text()
         body=soup.find('p', class_='paragraph_p18mfke4').get_text()
-        print(f"タイトル: {title}")
-        print(f"日時: {date}")
-        print(f"内容: {body}")
 
         new_record = HrInfo(
             title=title,
