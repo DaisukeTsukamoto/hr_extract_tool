@@ -1,6 +1,7 @@
 from libs.soup_util import RequestsUtil as req
 from libs.db_util import HrInfo, Database
 
+
 BASE_URL = 'https://www.nikkei.com'  # ベースURLの定義
 
 class ScraperNikkei():
