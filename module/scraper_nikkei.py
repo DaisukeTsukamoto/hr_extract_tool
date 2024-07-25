@@ -41,8 +41,12 @@ class ScraperNikkei():
         title=soup.find('h1', class_='title_t1xgcrem').get_text()
         date=soup.find('time').get_text()
         body=soup.find('p', class_='paragraph_p18mfke4').get_text()
-        print(f"タイトル: {title}")
-        print(f"日時: {date}")
-        print(f"内容: {body}")
 
+        new_record = HrInfo(
+            title=title,
+            date=date,
+            body=body
+        )
+
+        self.session.add(new_record)
         self.session.commit()
