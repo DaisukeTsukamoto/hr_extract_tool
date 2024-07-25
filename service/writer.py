@@ -13,10 +13,10 @@ class Writer:
         print(f'Excelファイル出力中')
 
         # テンプレートのExcelファイルを開く
-        workbook = load_workbook('input/template.xlsx')
+        workbook = load_workbook('input/日経人事情報リスト.xlsx')
         sheet = workbook['日経人事情報リスト']
 
-        row = 1  # ヘッダー行を除いた開始行
+        row = 3  # ヘッダー行を除いた開始行
         for item in data:
             sheet.cell(row=row, column=3, value=item.title)
             sheet.cell(row=row, column=4, value=item.date)
