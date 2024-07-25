@@ -1,6 +1,5 @@
 from libs.soup_util import RequestsUtil as req
 from libs.db_util import HrInfo, Database
-from requests import Session
 
 BASE_URL = 'https://www.nikkei.com'  # ベースURLの定義
 
