@@ -3,6 +3,5 @@ from service.writer import Writer
 from libs.db_util import Database
 
 if __name__ == "__main__":
-    Database.reset()
     ScraperNikkei().execute()
     Writer().execute()

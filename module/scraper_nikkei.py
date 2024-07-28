@@ -27,9 +27,10 @@ class ScraperNikkei():
         print(f"URL {url} をスクレイピング中...")
         soup = req.fetch(url)
         if not soup:
-            return []   
+            return []
 
         # 記事ページのURLを取得する処理
+        # soupから抜き出そう
         info_urls = soup.find_all('a', class_='fauxBlockLink_f1dg9afs')
         info_urls = [BASE_URL + info_url['href'] for info_url in info_urls]
         return info_urls

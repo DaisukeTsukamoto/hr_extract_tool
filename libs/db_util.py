@@ -9,11 +9,6 @@ class Database:
         engine = create_engine('sqlite:///scraped_data.db')
         Base.metadata.create_all(engine)
         return sessionmaker(bind=engine)()
-    
-    def reset():
-        engine = create_engine('sqlite:///scraped_data.db')
-        Base.metadata.drop_all(engine)
-        Base.metadata.create_all(engine)
 
 class HrInfo(Base):
     __tablename__ = 'hr_info'
