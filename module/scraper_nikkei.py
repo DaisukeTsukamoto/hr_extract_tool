@@ -1,11 +1,11 @@
 from libs.soup_util import RequestsUtil as req
 from libs.db_util import HrInfo, Database
 
+
 BASE_URL = 'https://www.nikkei.com'  # ベースURLの定義
 MAX_PAGE = 5
 
 class ScraperNikkei():
-
     def execute(self):
         self.session = Database.setup()
 
